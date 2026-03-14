@@ -2,14 +2,29 @@
 
 A parking management system including a Backend API (NestJS) and an Android Mobile App (Kotlin). The system helps manage vehicle entry and exit, users, and parking operations.
 
+## 📋 Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [System Architecture](#system-architecture)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
+- [Authentication](#authentication)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [License](#license)
+- [Author](#author)
+
 ## Overview
 
 Parking System is designed to support efficient parking lot management through a mobile application and a backend system. The project consists of two main parts:
 
-- Backend: NestJS, TypeScript
-- Mobile App: Android, Kotlin
+- **Backend**: NestJS, TypeScript
+- **Mobile App**: Android, Kotlin
 
-## Features
+## ✨ Features
 
 ### User
 - Sign up / log in
@@ -31,9 +46,9 @@ Parking System is designed to support efficient parking lot management through a
 - Admin Guard
 - Auth Guard
 
-## System Architecture
+## 🏗️ System Architecture
 
-```text
+```
 Mobile App (Android - Kotlin)
         │
         │ REST API
@@ -42,81 +57,213 @@ Backend (NestJS)
         │
         ▼
 Database
-Backend
-Project Structure
-src
- ├── admin
+```
+
+### Backend Project Structure
+
+```
+src/
+ ├── admin/
  │   ├── admin.controller.ts
  │   ├── admin.service.ts
  │   └── admin.module.ts
  │
- ├── auth
+ ├── auth/
  │   ├── auth.controller.ts
  │   ├── auth.service.ts
  │   └── auth.module.ts
  │
- ├── Guard
+ ├── Guard/
  │   ├── jwt-auth.guard.ts
  │   └── AdminGuard.guard.ts
  │
- ├── cloudinary
+ ├── cloudinary/
  │
  ├── app.module.ts
  ├── app.controller.ts
  └── app.service.ts
-Installation
-1. Clone the project
-git clone https://github.com/your-repo/parking-system.git
-cd ParkingSystem_Backend
-2. Install dependencies
-npm install
-3. Run the project in development mode
-npm run start:dev
-Default server address:
-http://localhost:3000
-Scripts
-Command	Description
-npm run start	Run the project
-npm run start:dev	Run in development mode
-npm run build	Build the project
-npm run test	Run tests
-Android App
-Technologies
-Kotlin
-Android Studio
-REST API
-Project Structure
-ParkingSystem-done
- ├── app
- ├── gradle
+```
+
+### Mobile App Project Structure
+
+```
+ParkingSystem-done/
+ ├── app/
+ ├── gradle/
  ├── build.gradle
  └── settings.gradle
-Run the Application
-Open the project in Android Studio
-Sync Gradle
-Click Run App
-Authentication
-The system uses JWT tokens.
-Workflow:
-Login
-   ↓
-Server returns JWT
-   ↓
-Client sends JWT in the header
-   ↓
-Auth Guard validates the token
-Example header:
-Authorization: Bearer <token>
-Cloudinary
-Used to upload:
-Vehicle images
-User images
-Configure the following variables in the .env file:
-CLOUDINARY_NAME=
-CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
-Testing
+```
+
+## 📦 Prerequisites
+
+### Backend
+- Node.js >= 16.x
+- npm >= 8.x
+- MongoDB or PostgreSQL (choose based on your setup)
+
+### Mobile App
+- Android Studio >= 4.0
+- Android SDK 21 or higher
+- Kotlin 1.5+
+
+## 🚀 Installation
+
+### Backend Setup
+
+1. Clone the project
+```bash
+git clone https://github.com/phuc852456-sketch/Car-and-bike-parking.git
+cd Car-and-bike-parking
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Configure environment variables
+```bash
+cp .env.example .env
+```
+
+4. Run the project in development mode
+```bash
+npm run start:dev
+```
+
+Default server address: `http://localhost:3000`
+
+### Available Backend Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run start` | Run the project |
+| `npm run start:dev` | Run in development mode with hot reload |
+| `npm run build` | Build the project |
+| `npm run test` | Run tests |
+
+### Mobile App Setup
+
+1. Open Android Studio
+2. Open the project folder `Car-and-bike-parking`
+3. Sync Gradle files (File > Sync Now)
+4. Select a device/emulator and click **Run App**
+
+## ⚙️ Configuration
+
+### Environment Variables (.env)
+
+Create a `.env` file in the backend root directory:
+
+```env
+# Database
+DATABASE_URL=mongodb://localhost:27017/parking_system
+# or for PostgreSQL: DATABASE_URL=postgresql://user:password@localhost:5432/parking_system
+
+# JWT
+JWT_SECRET=your_secret_key_here
+JWT_EXPIRATION=7d
+
+# Cloudinary
+CLOUDINARY_NAME=your_cloudinary_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+# Server
+PORT=3000
+NODE_ENV=development
+```
+
+### Cloudinary Setup
+
+1. Create an account at [Cloudinary](https://cloudinary.com/)
+2. Get your API credentials from the dashboard
+3. Add them to your `.env` file
+
+## 📱 Usage
+
+### Backend API
+
+Once the server is running at `http://localhost:3000`, you can:
+- Access API endpoints for user management, parking operations, etc.
+- Use the JWT token in the Authorization header for authenticated requests
+
+### Mobile App
+
+The Android app connects to the backend API and provides:
+- User authentication
+- Real-time parking status
+- Vehicle entry/exit management
+- Image uploads for vehicle and user profiles
+
+## 🔐 Authentication
+
+The system uses JWT (JSON Web Tokens) for authentication.
+
+### Authentication Workflow
+
+```
+1. User Login
+    ↓
+2. Server validates credentials and returns JWT token
+    ↓
+3. Client stores JWT and sends it in request headers
+    ↓
+4. Auth Guard validates the token on each request
+    ↓
+5. Authorized request is processed
+```
+
+### Example Request Header
+
+```
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+## 🧪 Testing
+
+Run the test suite:
+
+```bash
 npm run test
-Author
-Huynh Thanh Phuc
-Email: phuc852456@gmail.com
+```
+
+For test coverage:
+
+```bash
+npm run test:cov
+```
+
+## 📖 API Documentation
+
+For detailed API documentation, please refer to the API endpoints:
+- **Base URL**: `http://localhost:3000`
+- **Auth Endpoints**: `/api/auth`
+- **User Endpoints**: `/api/users`
+- **Admin Endpoints**: `/api/admin`
+
+(Consider adding Swagger/OpenAPI documentation for comprehensive API docs)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👤 Author
+
+**Huynh Thanh Phuc**
+- Email: phuc852456@gmail.com
+- GitHub: [@phuc852456-sketch](https://github.com/phuc852456-sketch)
+
+---
+
+For issues, questions, or suggestions, please open an issue on GitHub or contact the author.
