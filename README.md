@@ -1,145 +1,159 @@
-Car-and-bike-parking
-A parking management system including a Backend API (NestJS) and an Android Mobile App (Kotlin). The system helps manage vehicle entry and exit, users, and parking operations.
+# Hệ Thống Quản Lý Bãi Đỗ Xe
 
-**Table of Contents**
+**Car-and-bike-parking** là một giải pháp quản lý bãi đỗ xe hiện đại, bao gồm Backend API được xây dựng bằng NestJS và Ứng dụng di động Android sử dụng Kotlin. Hệ thống cung cấp các tính năng toàn diện để quản lý việc ra vào xe, người dùng và các hoạt động bãi đỗ.
 
-Overview
-Features
-System Architecture
-Prerequisites
-Installation
-Configuration
-Usage
-API Documentation
-Authentication
-Testing
-Contributing
-License
-Author
-Overview
+## Mục Lục
 
-Parking System is designed to support efficient parking lot management through a mobile application and a backend system. The project consists of two main parts:
+- [Tổng Quan](#tổng-quan)
+- [Tính Năng](#tính-năng)
+- [Kiến Trúc Hệ Thống](#kiến-trúc-hệ-thống)
+- [Yêu Cầu](#yêu-cầu)
+- [Cài Đặt](#cài-đặt)
+- [Cấu Hình](#cấu-hình)
+- [Sử Dụng](#sử-dụng)
+- [Xác Thực](#xác-thực)
+- [Kiểm Thử](#kiểm-thử)
+- [Đóng Góp](#đóng-góp)
+- [Giấy Phép](#giấy-phép)
 
-Backend: NestJS, TypeScript
-Mobile App: Android, Kotlin
-**Features**
+## Tổng Quan
 
-User
+Hệ thống quản lý bãi đỗ xe được thiết kế để hỗ trợ quản lý hiệu quả các bãi đỗ thông qua ứng dụng di động và hệ thống backend mạnh mẽ. Dự án bao gồm hai thành phần chính:
 
-Sign up / log in
-JWT-based authentication
-Manage personal profile
-View parking lot status
-Administrator
+- **Backend**: NestJS + TypeScript
+- **Ứng dụng di động**: Android + Kotlin
 
-Manage users
-Manage parking lots
-Control vehicle entry and exit
-Manage access permissions
-Image Upload
+## Tính Năng
 
-Upload images using Cloudinary
-Security
+### Người Dùng
+- Đăng ký / Đăng nhập
+- Xác thực dựa trên JWT
+- Quản lý hồ sơ cá nhân
+- Xem trạng thái bãi đỗ
 
-JWT Authentication
-Admin Guard
-Auth Guard
-**System Architecture**
+### Quản Trị Viên
+- Quản lý người dùng
+- Quản lý bãi đỗ
+- Kiểm soát ra vào xe
+- Quản lý quyền truy cập
 
-Code
-Mobile App (Android - Kotlin)
-        │
-        │ REST API
-        ▼
-Backend (NestJS)
-        │
-        ▼
-Database
-Backend Project Structure
+### Tải Hình Ảnh
+- Hỗ trợ tải hình ảnh qua Cloudinary
 
-Code
+### Bảo Mật
+- Xác thực JWT
+- Admin Guard
+- Auth Guard
+
+## Kiến Trúc Hệ Thống
+
+```
+   Ứng dụng di động (Android - Kotlin)
+            |
+            | REST API
+            v
+   Backend (NestJS)
+            |
+            v
+   Database
+```
+
+### Cấu Trúc Backend
+
+```
 src/
- ├── admin/
- │   ├── admin.controller.ts
- │   ├── admin.service.ts
- │   └── admin.module.ts
- │
- ├── auth/
- │   ├── auth.controller.ts
- │   ├── auth.service.ts
- │   └── auth.module.ts
- │
- ├── Guard/
- │   ├── jwt-auth.guard.ts
- │   └── AdminGuard.guard.ts
- │
- ├── cloudinary/
- │
- ├── app.module.ts
- ├── app.controller.ts
- └── app.service.ts
-Mobile App Project Structure
+├── admin/                    # Quản lý quản trị viên
+│   ├── admin.controller.ts
+│   ├── admin.service.ts
+│   └── admin.module.ts
+├── auth/                     # Xác thực & phân quyền
+│   ├── auth.controller.ts
+│   ├── auth.service.ts
+│   └── auth.module.ts
+├── guard/                    # Các bảo vệ (Guard)
+│   ├── jwt-auth.guard.ts
+│   └── admin.guard.ts
+├── cloudinary/              # Tích hợp Cloudinary
+├── app.module.ts
+├── app.controller.ts
+└── app.service.ts
+```
 
-Code
+### Cấu Trúc Ứng dụng Di Động
+
+```
 ParkingSystem-done/
- ├── app/
- ├── gradle/
- ├── build.gradle
- └── settings.gradle
-**Prerequisites**
+├── app/
+├── gradle/
+├── build.gradle
+└── settings.gradle
+```
 
-Backend
+## Yêu Cầu
 
-Node.js >= 16.x
-npm >= 8.x
-MongoDB or PostgreSQL (choose based on your setup)
-Mobile App
+### Backend
+- Node.js >= 16.x
+- npm >= 8.x
+- MongoDB hoặc PostgreSQL
 
-Android Studio >= 4.0
-Android SDK 21 or higher
-Kotlin 1.5+
-**Installation**
+### Ứng dụng Di Động
+- Android Studio >= 4.0
+- Android SDK 21+
+- Kotlin 1.5+
 
-Backend Setup
+## Cài Đặt
 
-Clone the project
-bash
+### Backend
+
+1. **Clone dự án**
+```bash
 git clone https://github.com/phuc852456-sketch/Car-and-bike-parking.git
 cd Car-and-bike-parking
-Install dependencies
-bash
+```
+
+2. **Cài đặt dependencies**
+```bash
 npm install
-Configure environment variables
-bash
+```
+
+3. **Cấu hình biến môi trường**
+```bash
 cp .env.example .env
-Run the project in development mode
-bash
+```
+
+4. **Chạy ở chế độ phát triển**
+```bash
 npm run start:dev
-Default server address: http://localhost:3000
+```
 
-Available Backend Scripts
+Default server: `http://localhost:3000`
 
-Command	Description
-npm run start	Run the project
-npm run start:dev	Run in development mode with hot reload
-npm run build	Build the project
-npm run test	Run tests
-Mobile App Setup
+#### Các lệnh Backend
 
-Open Android Studio
-Open the project folder Car-and-bike-parking
-Sync Gradle files (File > Sync Now)
-Select a device/emulator and click Run App
-**Configuration**
+| Lệnh | Mô Tả |
+|------|-------|
+| npm run start | Chạy dự án |
+| npm run start:dev | Chạy ở chế độ phát triển (hot reload) |
+| npm run build | Build dự án |
+| npm run test | Chạy test |
 
-Environment Variables (.env)
+### Ứng dụng Di Động
 
-Create a .env file in the backend root directory:
+1. Mở Android Studio
+2. Mở thư mục dự án `Car-and-bike-parking`
+3. Đồng bộ hóa Gradle files (File > Sync Now)
+4. Chọn thiết bị/emulator và nhấn `Run App`
 
-env
+## Cấu Hình
+
+### Biến Môi Trường (.env)
+
+Tạo file `.env` trong thư mục gốc backend:
+
+```env
 # Database
 DATABASE_URL=mongodb://localhost:27017/parking_system
-# or for PostgreSQL: DATABASE_URL=postgresql://user:password@localhost:5432/parking_system
+# Hoặc PostgreSQL: DATABASE_URL=postgresql://user:password@localhost:5432/parking_system
 
 # JWT
 JWT_SECRET=your_secret_key_here
@@ -153,84 +167,103 @@ CLOUDINARY_API_SECRET=your_api_secret
 # Server
 PORT=3000
 NODE_ENV=development
-Cloudinary Setup
+```
 
-Create an account at Cloudinary
-Get your API credentials from the dashboard
-Add them to your .env file
-**Usage**
+### Cấu Hình Cloudinary
 
-Backend API
+1. Tạo tài khoản tại Cloudinary
+2. Lấy API credentials từ dashboard
+3. Thêm vào file `.env`
 
-Once the server is running at http://localhost:3000, you can:
+## Sử Dụng
 
-Access API endpoints for user management, parking operations, etc.
-Use the JWT token in the Authorization header for authenticated requests
-Mobile App
+### Backend API
 
-The Android app connects to the backend API and provides:
+Khi server chạy tại `http://localhost:3000`:
 
-User authentication
-Real-time parking status
-Vehicle entry/exit management
-Image uploads for vehicle and user profiles
-**Authentication**
+- Truy cập các endpoint API cho quản lý người dùng, hoạt động bãi đỗ, v.v.
+- Sử dụng JWT token trong header `Authorization` cho các request được xác thực
 
-The system uses JWT (JSON Web Tokens) for authentication.
+### Ứng dụng Di Động
 
-Authentication Workflow
+Ứng dụng Android kết nối với Backend API và cung cấp:
 
-Code
-1. User Login
-    ↓
-2. Server validates credentials and returns JWT token
-    ↓
-3. Client stores JWT and sends it in request headers
-    ↓
-4. Auth Guard validates the token on each request
-    ↓
-5. Authorized request is processed
-Example Request Header
+- Xác thực người dùng
+- Trạng thái bãi đỗ theo thời gian thực
+- Quản lý ra vào xe
+- Tải lên hình ảnh xe và hồ sơ người dùng
 
-Code
+## Xác Thực
+
+Hệ thống sử dụng **JWT (JSON Web Tokens)** để xác thực.
+
+### Quy Trình Xác Thực
+
+```
+1. Người dùng đăng nhập
+   |
+   v
+2. Server xác thực thông tin đăng nhập & trả về JWT token
+   |
+   v
+3. Client lưu JWT & gửi nó trong request headers
+   |
+   v
+4. Auth Guard xác thực token trên mỗi request
+   |
+   v
+5. Request được phê duyệt được xử lý
+```
+
+### Ví Dụ Request Header
+
+```
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-**Testing**
+```
 
-Run the test suite:
+## Kiểm Thử
 
-bash
+Chạy test suite:
+
+```bash
 npm run test
-For test coverage:
+```
 
-bash
+Kiểm tra phạm vi test:
+
+```bash
 npm run test:cov
-**API Documentation**
+```
 
-For detailed API documentation, please refer to the API endpoints:
+## Tài Liệu API
 
-Base URL: http://localhost:3000
-Auth Endpoints: /api/auth
-User Endpoints: /api/users
-Admin Endpoints: /api/admin
-(Consider adding Swagger/OpenAPI documentation for comprehensive API docs)
+**Base URL:** `http://localhost:3000`
 
-**Contributing**
+- **Auth Endpoints:** `/api/auth`
+- **User Endpoints:** `/api/users`
+- **Admin Endpoints:** `/api/admin`
 
-Contributions are welcome! Please:
+Ghi chú: Hãy cân nhắc thêm tài liệu Swagger/OpenAPI để có API docs toàn diện
 
-Fork the repository
-Create a feature branch (git checkout -b feature/amazing-feature)
-Commit your changes (git commit -m 'Add amazing feature')
-Push to the branch (git push origin feature/amazing-feature)
-Open a Pull Request
-**License**
+## Đóng Góp
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Chúng tôi rất hoan nghênh các đóng góp! Vui lòng:
 
-**Author**
+1. Fork dự án
+2. Tạo nhánh tính năng (git checkout -b feature/amazing-feature)
+3. Commit các thay đổi (git commit -m 'Add amazing feature')
+4. Push đến nhánh (git push origin feature/amazing-feature)
+5. Mở Pull Request
 
-Huynh Thanh Phuc
+## Giấy Phép
 
-Email: phuc852456@gmail.com
-GitHub: @phuc852456-sketch
-For issues, questions, or suggestions, please open an issue on GitHub or contact the author.
+Dự án này được cấp phép theo MIT License - xem file LICENSE để biết chi tiết.
+
+## Tác Giả
+
+**Huynh Thanh Phuc**
+
+- Email: phuc852456@gmail.com
+- GitHub: @phuc852456-sketch
+
+Nếu có vấn đề, câu hỏi hoặc đề xuất, vui lòng mở issue trên GitHub hoặc liên hệ với tác giả.
