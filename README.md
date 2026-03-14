@@ -1,5 +1,4 @@
-**Car-and-bike-parking
-**
+Car-and-bike-parking
 A parking management system including a Backend API (NestJS) and an Android Mobile App (Kotlin). The system helps manage vehicle entry and exit, users, and parking operations.
 
 **Table of Contents**
